@@ -8,8 +8,7 @@ app.use(express.json());
 const ratelimit = rateLimit({
   windowMs: 1 * 60 * 1000,
   max: 1,
-  message:
-    "Liian monta pyyntöä tältä IP:ltä, yritä uudelleen minuutin kuluttua",
+  message: "Liian monta pyyntöä tältä IP:ltä, yritä uudelleen minuutin kuluttua",
 });
 
 app.use("/api/get-temperature", ratelimit);
@@ -19,6 +18,10 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/get-temperature", (req, res) => {
+  res.json({ message: "Hae lämpötila" });
+});
+
+app.post("/api/get-temperature", (req, res) => {
   res.json({ message: "Hae lämpötila" });
 });
 
